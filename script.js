@@ -1,7 +1,5 @@
-// 버튼을 찾아서 변수에 저장합니다.
-const lungsBtn = document.getElementById("lungs-btn");
+const quizBtn = document.getElementById("quiz-btn");
 
-// 버튼을 클릭했을 때 일어날 일을 적어줍니다.
-lungsBtn.addEventListener("click", function() {
-    alert(\n1. 이산화탄소\n2. 산소");
+quizBtn.addEventListener("click", function() {
+    alert("버튼이 정상 작동합니다!");
 });

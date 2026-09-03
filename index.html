@@ -3,35 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blood-circulation-quiz</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <title>순환계 학습</title>
+    <!-- CSS 강제 갱신용 버전 태그 포함 -->
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-    <!-- 왼쪽: 적혈구 영역 (Red Blood Cells) -->
-    <div class="bg-decorations left-side">
-        <div class="cell rbc rbc-1"></div>
-        <div class="cell rbc rbc-2"></div>
-        <div class="cell rbc rbc-3"></div>
-        <div class="cell rbc rbc-4"></div>
-        <div class="cell rbc rbc-5"></div>
-        <div class="cell rbc rbc-6"></div>
+    <!-- 은은하게 떠다니는 배경 입자 (적혈구/백혈구) -->
+    <div class="bg-particles">
+        <span class="particle rbc"></span>
+        <span class="particle rbc"></span>
+        <span class="particle rbc"></span>
+        <span class="particle wbc"></span>
+        <span class="particle wbc"></span>
     </div>
 
-    <!-- 오른쪽: 백혈구 영역 (White Blood Cells) -->
-    <div class="bg-decorations right-side">
-        <div class="cell wbc wbc-1"></div>
-        <div class="cell wbc wbc-2"></div>
-        <div class="cell wbc wbc-3"></div>
-        <div class="cell wbc wbc-4"></div>
-        <div class="cell wbc wbc-5"></div>
-        <div class="cell wbc wbc-6"></div>
-    </div>
-
-    <!-- 중앙 메인 퀴즈 상자 -->
-    <div class="game-container">
-        <h1>quiz</h1>
-        <p>quiz</p>
-        <button id="lungs-btn" class="quiz-btn">START</button>
+    <!-- 메인 카드의 글자는 원하는 내용으로 직접 고치실 수 있습니다 -->
+    <div class="main-card">
+        <h1>제목을 입력하세요</h1>
+        <p>여기에 원하시는 설명이나 안내 문구를 적어주시면 됩니다.</p>
+        <button id="quiz-btn">시작하기</button>
     </div>
 
     <script src="script.js"></script>

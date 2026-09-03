@@ -1,124 +1,103 @@
-/* 화면 전체 기본 설정 */
-body {
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #2b080c 0%, #5a121c 100%);
+    background: radial-gradient(circle at center, #721121 0%, #2a080c 100%);
     font-family: 'Arial', sans-serif;
-    overflow: hidden; /* 세포가 흘러다녀도 스크롤바 생기지 않도록 함 */
+    overflow: hidden;
     position: relative;
 }
 
-/* 배경 세포 레이어 설정 */
-.bg-decorations {
+/* 배경 세포 입자 */
+.bg-particles {
     position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
-    bottom: 0;
-    width: 30%;
-    pointer-events: none; /* 버튼 클릭을 방해하지 않게 함 */
-    z-index: 1;
+    left: 0;
+    pointer-events: none;
 }
 
-.left-side { left: 2%; }
-.right-side { right: 2%; }
-
-/* 공통 세포 floating 애니메이션 */
-.cell {
+.particle {
     position: absolute;
-    animation: float 4s ease-in-out infinite alternate;
-}
-
-/* --- 적혈구 (RBC) 3D 입체 디자인 --- */
-.rbc {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-    /* 입체적이고 가운데가 오목한 빨간 적혈구 연출 */
-    background: radial-gradient(circle at 35% 35%, #ff4d4d, #b30000 60%, #4a0000 100%);
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.6), 0 6px 15px rgba(0,0,0,0.5);
+    animation: floatUp 6s infinite ease-in-out;
 }
 
-/* 적혈구들 위치 및 시차 애니메이션 */
-.rbc-1 { top: 10%; left: 20%; transform: scale(1.1); animation-delay: 0s; }
-.rbc-2 { top: 30%; left: 60%; transform: scale(0.8); animation-delay: 1s; }
-.rbc-3 { top: 50%; left: 15%; transform: scale(1.3); animation-delay: 2s; }
-.rbc-4 { top: 70%; left: 55%; transform: scale(0.9); animation-delay: 0.5s; }
-.rbc-5 { top: 85%; left: 25%; transform: scale(1.1); animation-delay: 1.5s; }
-.rbc-6 { top: 20%; left: 75%; transform: scale(0.7); animation-delay: 2.5s; }
-
-/* --- 백혈구 (WBC) 3D 입체 디자인 --- */
-.wbc {
-    width: 55px;
-    height: 55px;
-    /* 백혈구 특유의 비대칭 울퉁불퉁한 원형 연출 */
-    border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
-    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #dcd6f7 50%, #9b82c3 100%);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0,0,0,0.4);
+.particle.rbc {
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle at 35% 35%, #ff4d6d, #800f2f);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 12px rgba(255, 77, 109, 0.4);
 }
 
-/* 백혈구들 위치 및 시차 애니메이션 */
-.wbc-1 { top: 15%; right: 25%; transform: scale(1.2); animation-delay: 0.2s; }
-.wbc-2 { top: 35%; right: 65%; transform: scale(0.85); animation-delay: 1.2s; }
-.wbc-3 { top: 55%; right: 20%; transform: scale(1.1); animation-delay: 2.2s; }
-.wbc-4 { top: 75%; right: 60%; transform: scale(0.95); animation-delay: 0.7s; }
-.wbc-5 { top: 88%; right: 30%; transform: scale(1.25); animation-delay: 1.7s; }
-.wbc-6 { top: 25%; right: 80%; transform: scale(0.75); animation-delay: 2.7s; }
-
-/* 혈액 속 세포가 둥둥 떠다니는 애니메이션 */
-@keyframes float {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    100% {
-        transform: translateY(-18px) rotate(12deg);
-    }
+.particle.wbc {
+    width: 42px;
+    height: 42px;
+    background: radial-gradient(circle at 35% 35%, #ffffff, #c8b6ff);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
-/* 중앙 게임 상자 (세포들보다 위에 위치하도록 설정) */
-.game-container {
+/* 입자별 위치 지정 */
+.particle:nth-child(1) { top: 70%; left: 12%; animation-duration: 5s; }
+.particle:nth-child(2) { top: 20%; left: 22%; animation-duration: 7s; }
+.particle:nth-child(3) { top: 65%; left: 82%; animation-duration: 6s; }
+.particle:nth-child(4) { top: 15%; left: 78%; animation-duration: 8s; }
+.particle:nth-child(5) { top: 80%; left: 48%; animation-duration: 6.5s; }
+
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-25px) scale(1.08); }
+}
+
+/* 메인 흰색 상자 디자인 */
+.main-card {
     position: relative;
     z-index: 10;
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.96);
     padding: 40px 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    max-width: 450px;
-    width: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     text-align: center;
+    max-width: 400px;
+    width: 85%;
 }
 
-/* 제목 스타일 */
-.game-container h1 {
-    color: #8b0000;
-    margin-bottom: 10px;
-    font-size: 24px;
+.main-card h1 {
+    color: #590d22;
+    font-size: 22px;
+    margin-bottom: 12px;
 }
 
-/* 안내 글씨 스타일 */
-.game-container p {
-    color: #555555;
-    margin-bottom: 25px;
+.main-card p {
+    color: #4a4a4a;
     font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.5;
 }
 
-/* 이동/퀴즈 버튼 */
-.quiz-btn {
-    background-color: #e63946;
+.main-card button {
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
     color: white;
     border: none;
-    padding: 14px 28px;
-    font-size: 17px;
+    padding: 14px 32px;
+    font-size: 16px;
     font-weight: bold;
-    border-radius: 12px;
+    border-radius: 30px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(201, 24, 74, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.quiz-btn:hover {
-    background-color: #c1121f;
+.main-card button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 24, 74, 0.6);
 }
