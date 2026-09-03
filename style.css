@@ -10,94 +10,111 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #721121 0%, #2a080c 100%);
-    font-family: 'Arial', sans-serif;
+    /* 무섭지 않고 밝은 친근한 핑크-코랄 레드 배경 */
+    background: linear-gradient(135deg, #ffccd5 0%, #ff758f 50%, #ff4d6d 100%);
+    font-family: 'Malgun Gothic', 'Arial', sans-serif;
     overflow: hidden;
     position: relative;
 }
 
-/* 배경 세포 입자 */
-.bg-particles {
+/* 세포 레이어 설정 */
+.cell-layer {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     pointer-events: none;
+    z-index: 1;
 }
 
-.particle {
+/* SVG 세포 공통 스타일 */
+.cell {
     position: absolute;
-    border-radius: 50%;
-    animation: floatUp 6s infinite ease-in-out;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
+    animation: float 4s ease-in-out infinite alternate;
 }
 
-.particle.rbc {
-    width: 36px;
-    height: 36px;
-    background: radial-gradient(circle at 35% 35%, #ff4d6d, #800f2f);
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.5), 0 0 12px rgba(255, 77, 109, 0.4);
+.cell svg {
+    width: 100%;
+    height: 100%;
 }
 
-.particle.wbc {
-    width: 42px;
-    height: 42px;
-    background: radial-gradient(circle at 35% 35%, #ffffff, #c8b6ff);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+/* 적혈구 크기 */
+.rbc {
+    width: 75px;
+    height: 75px;
 }
 
-/* 입자별 위치 지정 */
-.particle:nth-child(1) { top: 70%; left: 12%; animation-duration: 5s; }
-.particle:nth-child(2) { top: 20%; left: 22%; animation-duration: 7s; }
-.particle:nth-child(3) { top: 65%; left: 82%; animation-duration: 6s; }
-.particle:nth-child(4) { top: 15%; left: 78%; animation-duration: 8s; }
-.particle:nth-child(5) { top: 80%; left: 48%; animation-duration: 6.5s; }
-
-@keyframes floatUp {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-25px) scale(1.08); }
+/* 백혈구 크기 */
+.wbc {
+    width: 80px;
+    height: 80px;
 }
 
-/* 메인 흰색 상자 디자인 */
+/* 세포 개별 위치 지정 */
+.cell-left-1 { top: 15%; left: 8%; animation-delay: 0s; }
+.cell-left-2 { top: 65%; left: 12%; animation-delay: 1.5s; width: 60px; height: 60px; }
+.cell-right-1 { top: 20%; right: 10%; animation-delay: 0.8s; }
+.cell-right-2 { top: 70%; right: 14%; animation-delay: 2.2s; width: 65px; height: 65px; }
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* 메인 흰색 상자 */
 .main-card {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    background: #ffffff;
+    padding: 45px 35px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(164, 19, 60, 0.2);
     text-align: center;
-    max-width: 400px;
-    width: 85%;
+    max-width: 440px;
+    width: 90%;
+    
+    /* 3개 요소(제목, 내용, 버튼)를 세 줄로 일정한 간격(28px)으로 수직 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
 }
 
+/* 첫 번째 줄: 제목 */
 .main-card h1 {
-    color: #590d22;
+    color: #a4133c;
     font-size: 22px;
-    margin-bottom: 12px;
+    font-weight: bold;
+    word-break: keep-all;
 }
 
+/* 두 번째 줄: 설명 문구 */
 .main-card p {
     color: #4a4a4a;
-    font-size: 15px;
-    margin-bottom: 24px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.6;
+    word-break: keep-all;
 }
 
+/* 세 번째 줄: 버튼 */
 .main-card button {
-    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    background: #ff4d6d;
     color: white;
     border: none;
-    padding: 14px 32px;
-    font-size: 16px;
+    padding: 16px 36px;
+    font-size: 17px;
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(201, 24, 74, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 18px rgba(255, 77, 109, 0.4);
+    transition: all 0.2s ease;
 }
 
 .main-card button:hover {
+    background: #c9184a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(201, 24, 74, 0.6);
+    box-shadow: 0 8px 22px rgba(201, 24, 74, 0.5);
 }

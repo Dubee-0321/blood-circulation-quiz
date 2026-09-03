@@ -4,24 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>순환계 학습</title>
-    <!-- CSS 강제 갱신용 버전 태그 포함 -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <!-- CSS 강제 갱신용 버전 v=4 -->
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
-    <!-- 은은하게 떠다니는 배경 입자 (적혈구/백혈구) -->
-    <div class="bg-particles">
-        <span class="particle rbc"></span>
-        <span class="particle rbc"></span>
-        <span class="particle rbc"></span>
-        <span class="particle wbc"></span>
-        <span class="particle wbc"></span>
+
+    <!-- 눈에 바로 보이는 SVG 방식의 선명한 세포들 -->
+    <div class="cell-layer">
+        <!-- 왼쪽 적혈구들 -->
+        <div class="cell rbc cell-left-1" title="적혈구">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#ff4d6d"/>
+                <circle cx="50" cy="50" r="22" fill="#c9184a"/>
+            </svg>
+        </div>
+        <div class="cell rbc cell-left-2" title="적혈구">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#ff4d6d"/>
+                <circle cx="50" cy="50" r="22" fill="#c9184a"/>
+            </svg>
+        </div>
+
+        <!-- 오른쪽 백혈구들 -->
+        <div class="cell wbc cell-right-1" title="백혈구">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="44" fill="#ffffff" stroke="#b8c0ff" stroke-width="4"/>
+                <circle cx="38" cy="45" r="12" fill="#7209b7"/>
+                <circle cx="58" cy="55" r="10" fill="#7209b7"/>
+            </svg>
+        </div>
+        <div class="cell wbc cell-right-2" title="백혈구">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="44" fill="#ffffff" stroke="#b8c0ff" stroke-width="4"/>
+                <circle cx="48" cy="48" r="14" fill="#7209b7"/>
+            </svg>
+        </div>
     </div>
 
-    <!-- 메인 카드의 글자는 원하는 내용으로 직접 고치실 수 있습니다 -->
+    <!-- 메인 카드: 세 줄로 일정한 간격을 두고 배치된 3개의 요소 -->
     <div class="main-card">
-        <h1>제목을 입력하세요</h1>
-        <p>여기에 원하시는 설명이나 안내 문구를 적어주시면 됩니다.</p>
-        <button id="quiz-btn">시작하기</button>
+        <h1 class="card-line">첫 번째 줄: 제목 들어갈 자리</h1>
+        <p class="card-line">두 번째 줄: 설명이나 원하시는 문구를 적는 곳입니다.</p>
+        <button id="quiz-btn" class="card-line">세 번째 줄: 시작하기 버튼</button>
     </div>
 
     <script src="script.js"></script>
