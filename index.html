@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blood circulation quiz</title>
+    <title>blood-circulation-quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 왼쪽: 적혈구 영역 (Red Blood Cells) -->
+    <div class="bg-decorations left-side">
+        <div class="cell rbc rbc-1"></div>
+        <div class="cell rbc rbc-2"></div>
+        <div class="cell rbc rbc-3"></div>
+        <div class="cell rbc rbc-4"></div>
+        <div class="cell rbc rbc-5"></div>
+        <div class="cell rbc rbc-6"></div>
+    </div>
+
+    <!-- 오른쪽: 백혈구 영역 (White Blood Cells) -->
+    <div class="bg-decorations right-side">
+        <div class="cell wbc wbc-1"></div>
+        <div class="cell wbc wbc-2"></div>
+        <div class="cell wbc wbc-3"></div>
+        <div class="cell wbc wbc-4"></div>
+        <div class="cell wbc wbc-5"></div>
+        <div class="cell wbc wbc-6"></div>
+    </div>
+
+    <!-- 중앙 메인 퀴즈 상자 -->
     <div class="game-container">
-        <h1>blood circulation quiz</h1>
+        <h1>quiz</h1>
         <p>quiz</p>
-        
-        <!-- 퀴즈 버튼이 들어갈 자리 -->
-        <button id="lungs-btn" class="quiz-btn">폐로 이동하기</button>
+        <button id="lungs-btn" class="quiz-btn">START</button>
     </div>
 
     <script src="script.js"></script>
