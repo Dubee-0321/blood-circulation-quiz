@@ -31,7 +31,50 @@ quizBtn.addEventListener("click", function() {
     `;
 });
 
-// 캐릭터를 클릭했을 때 실행되는 함수
+// 캐릭터를 클릭했을 때 실행되는 함수 (소개 화면으로 전환)
 function selectCharacter(name) {
-    alert(name + " 캐릭터를 선택하셨습니다! 퀴즈를 시작합니다.");
+    let iconSvg = "";
+    let introText = "";
+
+    // 선택한 캐릭터에 따라 그림과 인사말을 다르게 설정합니다.
+    if (name === '적혈구') {
+        iconSvg = `
+            <svg viewBox="0 0 100 100" class="char-icon" style="width: 80px; height: 80px; margin-bottom: 10px;">
+                <circle cx="50" cy="50" r="45" fill="#ff4d6d"/>
+                <circle cx="50" cy="50" r="22" fill="#c9184a"/>
+            </svg>
+        `;
+        introText = "안녕! 난 적혈구야 ";
+    } else if (name === '백혈구') {
+        iconSvg = `
+            <svg viewBox="0 0 100 100" class="char-icon" style="width: 80px; height: 80px; margin-bottom: 10px;">
+                <circle cx="50" cy="50" r="44" fill="#ffffff" stroke="#b8c0ff" stroke-width="4"/>
+                <circle cx="38" cy="45" r="12" fill="#7209b7"/>
+                <circle cx="58" cy="55" r="10" fill="#7209b7"/>
+            </svg>
+        `;
+        introText = "반가워! 난 백혈구야 ";
+    }
+
+    // 상자 안의 내용을 캐릭터 소개와 게임 방법 화면으로 바꿉니다.
+    mainCard.innerHTML = `
+        ${iconSvg}
+        <h2 style="color: #a4133c; margin-bottom: 15px;">${name}, 준비 완료</h2>
+        <p style="color: #4a4a4a; font-size: 17px; margin-bottom: 15px; word-break: keep-all;">${introText}</p>
+        
+        <div style="background: #fff5f7; border-radius: 15px; padding: 15px; margin-bottom: 25px;">
+            <p style="color: #a4133c; font-weight: bold; margin-bottom: 8px;">🎮 퀴즈 여행 규칙</p>
+            <p style="color: #555; font-size: 15px; line-height: 1.5; margin: 0; word-break: keep-all;">
+                지금부터 심장을 출발해서 몸속 여러 기관들을 지나갈 거야.<br>
+                각 장소에서 나오는 퀴즈를 맞혀야 다음 목적지로 갈 수 있어!
+            </p>
+        </div>
+        
+        <button id="start-journey-btn">출발하기</button>
+    `;
+
+    // '출발하기!' 버튼을 누르면 실행될 다음 단계 준비 (지금은 알림창만 띄움)
+    document.getElementById("start-journey-btn").addEventListener("click", function() {
+        alert("이제 첫 번째 퀴즈 화면으로 넘어갈 차례입니다!");
+    });
 }
