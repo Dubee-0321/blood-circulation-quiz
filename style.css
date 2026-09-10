@@ -118,3 +118,51 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(201, 24, 74, 0.5);
 }
+
+/* --- 캐릭터 선택 화면 스타일 --- */
+.char-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.char-box {
+    flex: 1;
+    background: #fff5f7;
+    border: 2.5px solid #ff758f;
+    border-radius: 18px;
+    padding: 16px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 캐릭터 상자에 마우스를 올렸을 때 효과 */
+.char-box:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    border-color: #ff4d6d;
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.25);
+}
+
+.char-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.char-box h3 {
+    color: #a4133c;
+    font-size: 18px;
+    margin: 0;
+}
+
+.char-box p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+}
