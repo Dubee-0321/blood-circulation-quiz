@@ -96,7 +96,16 @@ const gameSteps = [
     }
 ];
 
-let currentStep = 0;
+
+          let currentStep = 0;
+let wrongCount = 0; // 오답 횟수 (질환 걸린 횟수)
+
+// 심혈관계 질환 정보 리스트 (오답 시 순서대로 획득)
+const diseases = [
+    "⚠️ [고혈압] 혈관 벽에 가해지는 압력이 지속적으로 너무 높은 상태입니다. 심장과 혈관에 큰 부담을 줍니다.",
+    "⚠️ [동맥경화] 혈관 벽에 콜레스테롤 같은 노폐물이 쌓여 혈관이 좁아지고 탄력을 잃는 질환입니다.",
+    "⚠️ [심근경색] 심장 근육에 산소를 공급하는 관상동맥이 막혀 심장 근육이 괴사하는 질환입니다"
+];
 
 // 메인 혈액 순환 게임 시작
 function startCirculationGame() {
@@ -116,19 +125,15 @@ function renderGameLayout() {
         <!-- 순환계 지도 시각화 -->
         <div class="map-box">
             <svg viewBox="0 0 300 180" class="map-svg">
-                <!-- 폐 (상단) -->
                 <rect x="110" y="10" width="80" height="35" rx="10" fill="${currentStep === 0 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
                 <text x="150" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">🫁 폐</text>
 
-                <!-- 심장 (중앙) -->
                 <rect x="110" y="72" width="80" height="36" rx="10" fill="${currentStep === 1 || currentStep === 3 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
                 <text x="150" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">❤️ 심장</text>
 
-                <!-- 온몸 세포 (하단) -->
                 <rect x="100" y="135" width="100" height="35" rx="10" fill="${currentStep === 2 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
                 <text x="150" y="157" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">🦵 온몸 세포</text>
 
-                <!-- 혈관 연결 경로 -->
                 <path d="M 130 72 L 130 45" stroke="#ff4d6d" stroke-width="4" fill="none" stroke-dasharray="4"/>
                 <path d="M 170 45 L 170 72" stroke="#4ea8de" stroke-width="4" fill="none" stroke-dasharray="4"/>
                 <path d="M 170 108 L 170 135" stroke="#ff4d6d" stroke-width="4" fill="none" stroke-dasharray="4"/>
@@ -141,6 +146,9 @@ function renderGameLayout() {
 
         <!-- 퀴즈 영역 -->
         <div class="quiz-box">
+            <p style="color: #c9184a; font-weight: bold; margin-bottom: 5px; font-size: 13px;">
+                 현재 질환 경고: ${wrongCount} / 3
+            </p>
             <p class="quiz-title">❓ ${step.quiz}</p>
             <div class="options-grid">
                 ${step.options.map((opt, idx) => `
@@ -151,29 +159,63 @@ function renderGameLayout() {
     `;
 }
 
-// 정답 확인 함수
+// 정답 및 오답(질환 획득) 처리
 function checkAnswer(selected) {
     const step = gameSteps[currentStep];
+    
+    // 정답일 때
     if (selected === step.answer) {
-        alert( + step.explanation);
+        alert("정답입니다 \n" + step.explanation);
         currentStep++;
         if (currentStep < gameSteps.length) {
             renderGameLayout();
         } else {
             showCompletionScreen();
         }
-    } else {
-        alert("다시 한번 생각해보세요");
+    } 
+    // 오답일 때 (질환 획득)
+    else {
+        let diseaseInfo = diseases[wrongCount];
+        wrongCount++; // 오답 카운트 1 증가
+
+        if (wrongCount >= 3) {
+            // 3번 틀리면 게임 오버 화면으로 이동
+            alert("오답입니다\n\n" + diseaseInfo + "\n\n질환이 누적되었습니다");
+            showGameOverScreen();
+        } else {
+            // 아직 기회가 남았을 때
+            alert("오답입니다\n\n" + diseaseInfo + "\n\n(현재 누적 질환: " + wrongCount + "개. 3개가 되면 게임 오버됩니다) 다시 생각해보세요");
+            renderGameLayout(); // 화면을 다시 그려서 경고 카운트 업데이트
+        }
     }
 }
 
-// 탐험 완료 화면
+// 탐험 완료 화면 (클리어)
 function showCompletionScreen() {
     mainCard.innerHTML = `
         <h1 style="color: #a4133c;">게임 클리어</h1>
         <p style="font-size: 16px; color: #4a4a4a;">
-    
+            축하합니다! 혈액 순환 원리를 완벽하게 배웠습니다!
         </p>
         <button onclick="location.reload()">처음으로 돌아가기</button>
+    `;
+}
+
+// 게임 오버 화면 (3번 오답)
+function showGameOverScreen() {
+    mainCard.innerHTML = `
+        <h1 style="color: #000000;">게임 오버</h1>
+        <p style="font-size: 16px; color: #4a4a4a;">
+            오답으로 인해 심혈관계 질환이 3개 발병하여, 게임을 더 이상 진행할 수 없습니다.
+        </p>
+        <div style="background: #fff0f3; padding: 15px; border-radius: 10px; text-align: left; margin: 15px 0;">
+            <p style="margin: 0 0 10px 0; color: #a4133c; font-weight: bold;">[발병한 질환 목록]</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #555; line-height: 1.6;">
+                <li>고혈압</li>
+                <li>동맥경화</li>
+                <li>심근경색</li>
+            </ul>
+        </div>
+        <button onclick="location.reload()" style="background: #333;">처음부터 다시 도전하기</button>
     `;
 }
