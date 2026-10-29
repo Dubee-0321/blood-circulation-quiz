@@ -155,7 +155,7 @@ function renderGameLayout() {
 function checkAnswer(selected) {
     const step = gameSteps[currentStep];
     if (selected === step.answer) {
-        alert("⭕ 정답입니다! " + step.explanation);
+        alert( + step.explanation);
         currentStep++;
         if (currentStep < gameSteps.length) {
             renderGameLayout();
@@ -163,7 +163,7 @@ function checkAnswer(selected) {
             showCompletionScreen();
         }
     } else {
-        alert("❌ 다시 한번 생각해보세요");
+        alert("다시 한번 생각해보세요");
     }
 }
 
