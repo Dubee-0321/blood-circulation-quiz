@@ -165,7 +165,7 @@ function checkAnswer(selected) {
     
     // 정답일 때
     if (selected === step.answer) {
-        alert("정답입니다 \n" + step.explanation);
+        alert(" \n" + step.explanation);
         currentStep++;
         if (currentStep < gameSteps.length) {
             renderGameLayout();
