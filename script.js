@@ -6,7 +6,7 @@ document.getElementById("quiz-btn")?.addEventListener("click", showCharacterSele
 
 function showCharacterSelect() {
     mainCard.innerHTML = `
-        <h1>캐릭터를 선택하세요!</h1>
+        <h1>캐릭터를 선택하세요</h1>
         <div class="char-container">
             <div class="char-box" onclick="selectCharacter('적혈구')">
                 <svg viewBox="0 0 100 100" class="char-icon">
@@ -37,24 +37,24 @@ function selectCharacter(name) {
         : `<svg viewBox="0 0 100 100" class="char-icon" style="width: 70px; height: 70px;"><circle cx="50" cy="50" r="44" fill="#ffffff" stroke="#b8c0ff" stroke-width="4"/><circle cx="38" cy="45" r="12" fill="#7209b7"/><circle cx="58" cy="55" r="10" fill="#7209b7"/></svg>`;
     
     let introText = name === '적혈구' 
-        ? "안녕! 난 적혈구야. 헤모글로빈에 의해 산소를 운반하지" 
-        : "반가워! 난 백혈구야. 세균이나 바이러스와 같은 외부 침입자로부터 몸을 보호하는 면역 기능을 담당하지.";
+        ? "헤모글로빈에 의해 산소를 운반하는 적혈구" 
+        : "세균이나 바이러스 등으로부터 몸을 보호하는 백혈구.";
 
     mainCard.innerHTML = `
         ${iconSvg}
-        <h2 style="color: #a4133c;">${name}, 준비 완료!</h2>
+        <h2 style="color: #a4133c;">${name}</h2>
         <p style="color: #4a4a4a; font-size: 16px;">${introText}</p>
         <div style="background: #fff5f7; border-radius: 15px; padding: 15px; width: 100%;">
             <p style="color: #a4133c; font-weight: bold; margin-bottom: 5px;">게임 방법</p>
             <p style="color: #555; font-size: 14px; margin: 0; line-height: 1.4;">
-                지금부터 심장을 출발해서 몸속 여러 기관들을 지나갈 거야.
-                각 장소에서 나오는 퀴즈에 정답을 답해야 다음 목적지로 갈 수 있어. 
-                만약 틀린 답을 고른다면, 심혈관계 질환 하나에 대한 정보가 나올거야. 
-                질환 세개가 쌓인다면 게임 오버! 혈액 순환이 잘 진행될 수 있도록 도와줄래?<br>
+                지금부터 심장을 출발해서 몸속 여러 기관들을 지나갈 것입니다.
+                각 장소에서 나오는 퀴즈에 정답을 답해야 다음 목적지로 갈 수 있으며, 
+                만약 틀린 답을 고른다면 심혈관계 질환 하나에 대한 정보가 나오게 됩니다.
+                질환 세개가 쌓인다면 게임 오버<br>
                 
             </p>
         </div>
-        <button id="start-journey-btn">출발하기!</button>
+        <button id="start-journey-btn">시작하기</button>
     `;
 
     document.getElementById("start-journey-btn").addEventListener("click", startCirculationGame);
@@ -63,36 +63,36 @@ function selectCharacter(name) {
 // 혈액 순환 게임 단계 데이터
 const gameSteps = [
     {
-        title: "폐 (산소 교환)",
-        speech: "첫 번째 목적지는 [폐]야! 이산화탄소를 버리고 산소를 받으러 가자!",
-        quiz: "폐에 도착했어! 폐포에서 혈액 속으로 들어오는 기체는 무엇일까?",
-        options: ["산소", "이산화탄소", "질소"],
-        answer: 0,
-        explanation: "맞았어! 폐포에서는 혈액에 산소를 공급하고 이산화탄소를 받아내!"
+        title: "폐",
+        speech: "첫 번째 목적지는 [폐]입니다. 이산화탄소를 버리고 산소를 받으러 갑시다",
+        quiz: "폐포와 모세혈관 사이에서 산소와 이산화탄소가 교환되는 핵심 원리로 옳은 것은?",
+        options: ["능동수송", "확산 현상", "삼투 현상"],
+        answer: 1,
+        explanation: "정답입니다"
     },
     {
-        title: "심장 (좌심방·좌심실)",
-        speech: "산소를 가득 채웠으니 다시 [심장]으로 돌아가자!",
-        quiz: "산소가 풍부한 혈액(동맥혈)이 폐에서 처음 들어오는 곳은 어디일까?",
-        options: ["우심방", "좌심방", "우심실"],
-        answer: 1,
-        explanation: "정답! 폐를 지난 깨끗한 피는 좌심방으로 돌아와 좌심실로 이동해!"
+        title: "심장",
+        speech: "산소를 가득 채웠으니 다시 [심장]으로 돌아갑시다",
+        quiz: "우리 몸의 혈관 중 [산소 함량이 가장 높은 혈액이 흐르는 혈관]과 [이산화탄소 함량이 가장 높은 혈액이 흐르는 혈관]을 순서대로 바르게 짝지은 것은?",
+        options: ["대동맥 - 대정맥", "폐동맥 - 폐정맥", "폐정맥 - 폐동맥"],
+        answer: 2,
+        explanation: "정답입니다"
     },
     {
         title: "온몸 세포",
-        speech: "이제 대동맥을 타고 [온몸 세포]로 가서 산소와 영양소를 전해주자!",
-        quiz: "온몸의 모세혈관에서 세포에게 산소를 주고 받아오는 노폐물 기체는?",
-        options: ["수소", "산소", "이산화탄소"],
-        answer: 2,
-        explanation: "좋아! 세포는 산소를 사용하고 결과물로 이산화탄소를 만들어내."
+        speech: "이제 대동맥을 타고 온몸 세포로 가서 산소와 영양소를 전해줍시다",
+        quiz: "좌심실이 강하게 수축할 때, 혈액이 심방으로 역류하지 않도록 '닫히는' 판막은?",
+        options: ["이첨판(방실판막)", "반월판막", "정맥판막"],
+        answer: 0,
+        explanation: "정답입니다"
     },
     {
-        title: "심장 (우심방 - 도착!)",
-        speech: "이산화탄소를 품고 정맥을 따라 마지막 목적지인 [심장]으로 무사히 돌아왔어!",
-        quiz: "온몸을 돌고 온 피가 심장으로 다시 들어가는 입구는 어디일까?",
-        options: ["우심방", "좌심실", "폐동맥"],
+        title: "심장",
+        speech: "마지막 목적지, 심장입니다",
+        quiz: "모세혈관이 세포와 물질 교환을 효율적으로 할 수 있는 이유는 혈류 속도가 어떠하기 때문일까?",
+        options: ["가장 느림", "가장 빠름", "동맥과 같음"],
         answer: 0,
-        explanation: "완벽해! 우심방으로 돌아온 피는 다시 우심실을 통해 폐로 나아가게 돼!"
+        explanation: "정답입니다"
     }
 ];
 
@@ -163,16 +163,16 @@ function checkAnswer(selected) {
             showCompletionScreen();
         }
     } else {
-        alert("❌ 다시 한번 생각해보세요.");
+        alert("❌ 다시 한번 생각해보세요");
     }
 }
 
 // 탐험 완료 화면
 function showCompletionScreen() {
     mainCard.innerHTML = `
-        <h1 style="color: #a4133c;">게임 클리어!</h1>
+        <h1 style="color: #a4133c;">게임 클리어</h1>
         <p style="font-size: 16px; color: #4a4a4a;">
-            축하합니다! 심장, 폐, 온몸 세포를 무사히 돌며 산소와 이산화탄소 교환 원리를 완벽하게 배웠어요!
+    
         </p>
         <button onclick="location.reload()">처음으로 돌아가기</button>
     `;
