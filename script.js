@@ -117,8 +117,29 @@ function renderGameLayout() {
     const step = gameSteps[currentStep];
 
     mainCard.innerHTML = `
+        <!-- 우측 상단 책 아이콘 (질환 도감) -->
+        <button class="book-btn" onclick="toggleBookModal()" title="질환 도감 보기">
+            📖 <span class="book-badge">${wrongCount}</span>
+        </button>
+
+        <!-- 질환 도감 팝업 (모달) -->
+        <div id="book-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>수집한 심혈관계 질환</h3>
+                    <span class="close-btn" onclick="toggleBookModal()">×</span>
+                </div>
+                <div class="modal-body">
+                    ${wrongCount === 0 
+                        ? `<p style="color: #888; margin: 20px 0;">아직 수집된 질환이 없어요!<br>건강한 상태를 유지 중입니다. 💪</p>` 
+                        : diseases.slice(0, wrongCount).map(d => `<div class="disease-card">${d}</div>`).join('')
+                    }
+                </div>
+            </div>
+        </div>
+
         <!-- 캐릭터 대사창 -->
-        <div class="speech-bubble">
+        <div class="speech-bubble" style="margin-top: 10px;">
             <strong>${selectedChar}:</strong> "${step.speech}"
         </div>
 
@@ -147,7 +168,7 @@ function renderGameLayout() {
         <!-- 퀴즈 영역 -->
         <div class="quiz-box">
             <p style="color: #c9184a; font-weight: bold; margin-bottom: 5px; font-size: 13px;">
-                 현재 질환 경고: ${wrongCount} / 3
+                현재 질환 경고: ${wrongCount} / 3
             </p>
             <p class="quiz-title">❓ ${step.quiz}</p>
             <div class="options-grid">
@@ -159,6 +180,13 @@ function renderGameLayout() {
     `;
 }
 
+// 질환 도감 모달 열기/닫기 함수 (script.js 맨 밑에 추가)
+function toggleBookModal() {
+    const modal = document.getElementById("book-modal");
+    if (modal) {
+        modal.classList.toggle("hidden");
+    }
+}
 // 정답 및 오답(질환 획득) 처리
 function checkAnswer(selected) {
     const step = gameSteps[currentStep];
