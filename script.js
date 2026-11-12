@@ -127,7 +127,7 @@ function renderGameLayout() {
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>수집한 심혈관계 질환</h3>
-                    <span class="close-btn" onclick="toggleBookModal()"></span>
+                    <span class="close-btn" onclick="toggleBookModal()">X</span>
                 </div>
                 <div class="modal-body">
                     ${wrongCount === 0 
