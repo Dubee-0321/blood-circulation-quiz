@@ -147,13 +147,13 @@ function renderGameLayout() {
         <div class="map-box">
             <svg viewBox="0 0 300 180" class="map-svg">
                 <rect x="110" y="10" width="80" height="35" rx="10" fill="${currentStep === 0 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
-                <text x="150" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">🫁 폐</text>
+                <text x="150" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">폐</text>
 
                 <rect x="110" y="72" width="80" height="36" rx="10" fill="${currentStep === 1 || currentStep === 3 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
-                <text x="150" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">❤️ 심장</text>
+                <text x="150" y="95" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">심장</text>
 
                 <rect x="100" y="135" width="100" height="35" rx="10" fill="${currentStep === 2 ? '#ff4d6d' : '#ffe5ec'}" stroke="#a4133c" stroke-width="2"/>
-                <text x="150" y="157" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">🦵 온몸 세포</text>
+                <text x="150" y="157" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">온몸 세포</text>
 
                 <path d="M 130 72 L 130 45" stroke="#ff4d6d" stroke-width="4" fill="none" stroke-dasharray="4"/>
                 <path d="M 170 45 L 170 72" stroke="#4ea8de" stroke-width="4" fill="none" stroke-dasharray="4"/>
