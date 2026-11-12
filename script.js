@@ -38,7 +38,7 @@ function selectCharacter(name) {
     
     let introText = name === '적혈구' 
         ? "헤모글로빈에 의해 산소를 운반하는 적혈구" 
-        : "세균이나 바이러스 등으로부터 몸을 보호하는 백혈구.";
+        : "세균이나 바이러스 등으로부터 몸을 보호하는 백혈구";
 
     mainCard.innerHTML = `
         ${iconSvg}
@@ -131,7 +131,7 @@ function renderGameLayout() {
                 </div>
                 <div class="modal-body">
                     ${wrongCount === 0 
-                        ? `<p style="color: #888; margin: 20px 0;">아직 수집된 질환이 없어요!<br>건강한 상태를 유지 중입니다. 💪</p>` 
+                        ? `<p style="color: #888; margin: 20px 0;">아직 수집된 질환이 없어요!<br>건강한 상태를 유지 중입니다.</p>` 
                         : diseases.slice(0, wrongCount).map(d => `<div class="disease-card">${d}</div>`).join('')
                     }
                 </div>
